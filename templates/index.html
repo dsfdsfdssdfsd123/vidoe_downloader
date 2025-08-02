@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>🎥️أداة حفظ فيديوهات من تيك توك وإنستقرام وفيسبوك</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="📀 حفظ فيديوهاتك المفضلة من TikTok ، Instagram ، Facebook Reels لاستخدام شخصي وتعليمي بكل سهولة.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background: #f0f3f9; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+    header {
+      background: linear-gradient(135deg, #7c4dff, #6200ea);
+      color: white;
+      padding: 50px 0;
+      text-align: center;
+      animation: fadeIn 2s;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    nav a {
+      color: #6200ea !important;
+      font-weight: bold;
+      padding: 12px;
+      display: inline-block;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      background: #ffffff;
+      animation: fadeIn 1.5s;
+    }
+    .hero input, .hero select {
+      max-width: 500px;
+      margin: 10px auto;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 0;
+      background: #fff;
+    }
+    .feat {
+      flex: 1 1 200px;
+      margin: 15px;
+      text-align: center;
+      animation: fadeIn 2s;
+    }
+    .feat i {
+      font-size: 48px;
+      color: #7c4dff;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .section {
+      background: #ffffff;
+      margin: 40px auto;
+      max-width: 900px;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+    footer {
+      background: #f1f1f1;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <h1>🔗 منصة حفظ فيديوهات السوشيال</h1>
+  <p>📹 حمِِّل مقاطعك المفضلة من TikTok و Instagram و Facebook Reels</p>
+</header>
+
+<!-- Navigation -->
+<nav class="text-center bg-white shadow-sm">
+  <a href="#home">🏠 الرئيسية</a>
+  <a href="#about">📜 من نحن</a>
+  <a href="#privacy">🔐 الخصوصية</a>
+  <a href="#contact">📧 اتصل بنا</a>
+</nav>
+
+<!-- Hero -->
+<div class="hero" id="home">
+  <form method="POST">
+    <select class="form-select form-select-lg mb-3" name="platform" required>
+      <option value="" disabled selected>🔧 اختر المنصة</option>
+      <option value="instagram">📷 إنستقرام</option>
+      <option value="tiktok">🎤 تيك توك</option>
+      <option value="facebook">📉 فيسبوك Reels</option>
+    </select>
+    <input type="url" name="video_url" class="form-control form-control-lg" placeholder="🔗 رابط الفيديو" required>
+    <button type="submit" class="btn btn-primary btn-lg mt-3">💾 حفظ الفيديو</button>
+  </form>
+</div>
+
+<!-- Features -->
+<div class="features">
+  <div class="feat">
+    <i class="bi bi-download"></i>
+    <h5>🔽️ حفظ مباشر</h5>
+  </div>
+  <div class="feat">
+    <i class="bi bi-shield-lock"></i>
+    <h5>🔒 احترام الخصوصية</h5>
+  </div>
+  <div class="feat">
+    <i class="bi bi-hdmi"></i>
+    <h5>🎞️ جودة HD</h5>
+  </div>
+  <div class="feat">
+    <i class="bi bi-phone"></i>
+    <h5>📱 متوافق مع الجوال</h5>
+  </div>
+</div>
+
+<!-- About -->
+<div class="section" id="about">
+  <h2>📖 من نحن</h2>
+  <p>نحن موقع تعليمي يوفر أدوات لحفظ الفيديوهات للاستخدام الشخصي والأكاديمي مع الالتزام بقوانين حماية المحتوى.</p>
+</div>
+
+<!-- Privacy -->
+<div class="section" id="privacy">
+  <h2>🔐 سياسة الخصوصية</h2>
+  <p>نحن لا نقوم بتخزين أي روابط أو معلومات شخصية. يتم معالجة البيانات محليًّا لغرض تشغيل الأداة فقط.</p>
+</div>
+
+<!-- Contact -->
+<div class="section" id="contact">
+  <h2>📧 اتصل بنا</h2>
+  <p>للاستفسارات والملاحظات يمكنك مراسلتنا على:</p>
+  <p><strong>support@socialvidsave.com</strong></p>
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 جميع الحقوق محفوظة | SocialVidSave.com
+</footer>
+
+</body>
+</html>
