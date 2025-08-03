@@ -4,9 +4,12 @@ import os
 import uuid
 
 app = Flask(__name__)
+
+# إعداد مجلد التنزيلات
 DOWNLOAD_FOLDER = "downloads"
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
+# الصفحة الرئيسية وتحميل الفيديو
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -28,11 +31,17 @@ def index():
 
     return render_template('index.html')
 
-# إضافة هذا المسار ليخدم ملف ads.txt من الجذر
+# خدمة ملف ads.txt من الجذر
 @app.route('/ads.txt')
 def ads_txt():
     return send_from_directory('.', 'ads.txt')
 
+# خدمة ملفات HTML مثل googleXXXX.html (للتحقق من Google Search Console)
+@app.route('/<filename>.html')
+def serve_verification_file(filename):
+    return send_from_directory('static', f"{filename}.html")
+
+# تشغيل التطبيق
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
