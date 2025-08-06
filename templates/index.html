@@ -511,6 +511,41 @@
       background-clip: text;
       color: transparent;
     }
+
+    /* أنماط دائرة التحميل */
+.spinner {
+    display: none;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn-loading {
+    position: relative;
+}
+
+.btn-loading .btn-text {
+    visibility: hidden;
+}
+
+.btn-loading .spinner {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
   </style>
 </head>
 <body>
@@ -613,6 +648,12 @@
 <main class="container">
   <!-- أداة التحميل الرئيسية -->
   <section id="home" class="section animate" style="animation-delay: 0.2s;">
+    {% if error_message %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i><strong>خطأ:</strong> {{ error_message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
     <div class="row align-items-center">
       <div class="col-lg-6 mb-4 mb-lg-0">
         <h2 class="section-title"><i class="bi bi-cloud-arrow-down-fill me-2" style="color: var(--primary-color);"></i>أداة التحميل الذكية</h2>
@@ -626,7 +667,7 @@
       </div>
       <div class="col-lg-6">
         <div class="feature-card p-4">
-          <form method="POST" class="mx-auto">
+          <form method="POST" class="mx-auto" id="downloadForm">
             <div class="mb-3">
               <label for="platform" class="form-label fw-bold"><i class="bi bi-grid-fill me-2"></i>اختر المنصة:</label>
               <select class="form-select form-select-lg mb-3" name="platform" id="platform" required>
@@ -638,8 +679,7 @@
                 <option value="twitter"><i class="bi bi-twitter me-2"></i> تويتر</option>
                 <option value="snapchat"><i class="bi bi-snapchat me-2"></i> سناب شات</option>
               </select>
-            </div>
-            
+
             <div class="mb-3">
               <label for="video_url" class="form-label fw-bold"><i class="bi bi-link-45deg me-2"></i>رابط الفيديو:</label>
               <div class="input-group">
@@ -648,8 +688,14 @@
               </div>
             </div>
             
+            <!-- تحديث زر التحميل في النموذج -->
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-cloud-arrow-down-fill me-1"></i> تحميل الآن</button>
+                <button type="submit" class="btn btn-primary btn-lg" id="downloadBtn">
+                    <span class="spinner"></span>
+                    <span class="btn-text">
+                        <i class="bi bi-cloud-arrow-down-fill me-1"></i> تحميل الآن
+                    </span>
+                </button>
             </div>
             
             <div class="mt-3 text-center">
@@ -1142,47 +1188,6 @@
               <img src="https://via.placeholder.com/135x40/ffffff/7ed957?text=Google+Play" alt="Google Play" class="img-fluid" style="height: 40px;">
             </a>
             <a href="#">
-              <img src="https://via.placeholder.com/135x40/ffffff/7ed957?text=App+Store" alt="App Store" class="img-fluid" style="height: 40px;">
-            </a>
-          </div>
-        </div>
-        
-        <div class="mb-3">
-          <h6><i class="bi bi-shield-check me-2"></i>مواقع آمنة</h6>
-          <div class="d-flex mt-2">
-            <a href="#" class="me-2">
-              <img src="https://via.placeholder.com/100x40/ffffff/7ed957?text=DMCA" alt="DMCA" class="img-fluid" style="height: 40px;">
-            </a>
-            <a href="#">
-              <img src="https://via.placeholder.com/100x40/ffffff/7ed957?text=SSL" alt="SSL" class="img-fluid" style="height: 40px;">
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
-        <h5><i class="bi bi-link-45deg me-2"></i>روابط سريعة</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="/privacy-policy" class="text-white"><i class="bi bi-chevron-left me-2"></i>سياسة الخصوصية</a></li>
-          <li class="mb-2"><a href="/terms" class="text-white"><i class="bi bi-chevron-left me-2"></i>شروط الاستخدام</a></li>
-          <li class="mb-2"><a href="/dmca" class="text-white"><i class="bi bi-chevron-left me-2"></i>سياسة DMCA</a></li>
-          <li class="mb-2"><a href="/blog" class="text-white"><i class="bi bi-chevron-left me-2"></i>المدونة</a></li>
-          <li class="mb-2"><a href="/sitemap" class="text-white"><i class="bi bi-chevron-left me-2"></i>خريطة الموقع</a></li>
-        </ul>
-      </div>
-      
-      <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
-        <h5><i class="bi bi-collection me-2"></i>المنصات</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>تيك توك</a></li>
-          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>إنستقرام</a></li>
-          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>يوتيوب</a></li>
-          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>فيسبوك</a></li>
-          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>تويتر</a></li>
-        </ul>
-      </div>
-      
-      <div class="col-lg-4 col-md-4">
         <h5><i class="bi bi-people me-2"></i>تابعنا</h5>
         <div class="social-links mb-4">
           <a href="#" class="social-btn facebook me-2"><i class="bi bi-facebook"></i></a>
@@ -1319,16 +1324,38 @@
         }
       });
     });
+
+    // التعامل مع زر التحميل وإظهار دائرة الانتظار
+    document.getElementById('downloadForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // منع إرسال النموذج الافتراضي
+      
+      // هناك زر واحد فقط الآن، لذا هذا سيعمل بشكل صحيح
+      const button = document.getElementById('downloadBtn');
+      
+      // إضافة حالة التحميل لإظهار الدائرة
+      button.classList.add('btn-loading');
+      button.disabled = true;
+      
+      // محاكاة عملية التحميل ثم إرسال النموذج
+      setTimeout(() => {
+          // إزالة حالة التحميل
+          button.classList.remove('btn-loading');
+          button.disabled = false;
+          
+          // إرسال النموذج لبدء التحميل الفعلي
+          this.submit();
+      }, 2000); // مدة العرض: ثانيتان
+    });
   });
 </script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
 </script>
 </body>
 </html>
