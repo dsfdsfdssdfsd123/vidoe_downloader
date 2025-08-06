@@ -2,12 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>🎥 تحميل فيديوهات السوشيال ميديا - بدون انتهاك حقوق النشر</title>
+  <title>🍏 تحميل فيديوهات السوشيال ميديا - أداة متكاملة</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="أداة قانونية لتحميل فيديوهات TikTok، Instagram، Facebook Reels للاستخدام الشخصي فقط مع احترام حقوق النشر">
-  <meta name="keywords" content="تحميل فيديو تيك توك, تنزيل فيديو انستجرام, حفظ ريلز فيسبوك">
+  <meta name="description" content="أداة متقدمة لتحميل فيديوهات TikTok، Instagram، YouTube، Facebook بجودة عالية مع دعم جميع المنصات">
+  <meta name="keywords" content="تحميل فيديو تيك توك, تنزيل فيديو انستجرام, حفظ ريلز فيسبوك, تحميل يوتيوب">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
   
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4554336345606719"
@@ -19,7 +20,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "أداة تحميل فيديوهات السوشيال",
-      "description": "أداة آمنة لتحميل الفيديوهات من منصات التواصل الاجتماعي للاستخدام الشخصي",
+      "description": "أداة متقدمة لتحميل الفيديوهات من جميع منصات التواصل الاجتماعي",
       "applicationCategory": "DownloaderTool",
       "operatingSystem": "Web",
       "offers": {
@@ -29,21 +30,30 @@
       },
       "creator": {
         "@type": "Organization",
-        "name": "SocialVidSave"
+        "name": "SocialVidPro"
       }
     }
   </script>
 
   <style>
-    :root {
-      --primary-color: #4a6bff; /* أزرق أكثر هدوءًا */
-      --secondary-color: #3a56d4;
-      --accent-color: #00c9a7;
-      --warning-color: #ff6b6b;
-    }
+    /* تحديث متغيرات الألوان الرئيسية */
+  :root {
+  --primary-color: #7ba77b;        /* أخضر داكن احترافي */
+  --secondary-color: #95e799;      /* أخضر متوسط */
+  --accent-color: #A5D6A7;         /* أخضر فاتح ناعم */
+  --warning-color: #E53935;        /* أحمر أقل سطوعًا للتنبيهات */
+  --apple-light: #E8F5E9;          /* خلفية فاتحة */
+  --apple-lighter: #F1F8E9;        /* خلفية أفتح */
+  --dark-green: #287a2c;           /* أخضر داكن للعناصر المهمة */
+  --text-primary: #1B1B1B;         /* لون نص داكن قليلاً */
+  --text-secondary: #616161;       /* لون نص ثانوي أهدأ */
+  --surface-color: #FFFFFF;        /* خلفية بيضاء */
+  --border-color: #E0E0E0;         /* لون حدود ناعم */
+}
+
     
     body { 
-      background: #f8f9fa; 
+      background: var(--apple-lighter); 
       font-family: 'Tajawal', 'Segoe UI', sans-serif;
       line-height: 1.7;
     }
@@ -54,12 +64,13 @@
     }
     
     header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--dark-green), var(--primary-color));
       color: white;
-      padding: 3rem 0;
+      padding: 4rem 0 6rem;
       text-align: center;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
     
     .header-wave {
@@ -67,9 +78,33 @@
       bottom: -1px;
       left: 0;
       width: 100%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" fill="%23f8f9fa"></path></svg>');
+      height: 150px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" fill="%23f1f8e9"></path></svg>');
       background-size: cover;
+    }
+    
+    /* الشريط العلوي المميز */
+    .top-bar {
+      background: var(--dark-green);
+      color: white;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .top-bar a:hover {
+      color: var(--primary-color);
+    }
+    
+    .top-bar-icons {
+      display: flex;
+      gap: 1rem;
     }
     
     nav {
@@ -78,13 +113,15 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      border-bottom: 3px solid var(--primary-color);
     }
     
     .nav-link {
-      color: var(--secondary-color);
+      color: var(--dark-green);
       font-weight: 600;
-      padding: 0.8rem 1rem;
+      padding: 1rem 1.5rem;
       transition: all 0.2s ease;
+      position: relative;
     }
     
     .nav-link:hover {
@@ -92,90 +129,195 @@
       transform: translateY(-2px);
     }
     
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 3px;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
     }
     
+    .nav-link:hover:after {
+      width: 100%;
+      left: 0;
+      right: auto;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    /* تحسينات النماذج */
     .form-control, .form-select {
       border-radius: 12px;
       padding: 1rem;
       border: 2px solid #e9ecef;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      font-size: 1.1rem;
     }
     
     .form-control:focus, .form-select:focus {
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 0.2rem rgba(74, 107, 255, 0.2);
+      box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.15);
     }
     
     .btn-primary {
       background-color: var(--primary-color);
       border: none;
       padding: 0.8rem 2rem;
-      border-radius: 12px;
+      border-radius: 8px;
       font-weight: 600;
-      letter-spacing: 0.5px;
       transition: all 0.3s ease;
     }
     
     .btn-primary:hover {
-      background-color: var(--secondary-color);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      background-color: var(--dark-green);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2);
     }
     
+    .btn-outline-primary {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    
+    .btn-outline-primary:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    /* بطاقات الميزات */
     .feature-card {
-      background: #fff;
+      background: var(--surface-color);
       border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      height: 100%;
     }
     
     .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
     
     .section {
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+      padding: 3rem;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(126, 217, 87, 0.2);
+    }
+    
+    .section-title {
+      position: relative;
+      padding-bottom: 1rem;
       margin-bottom: 2rem;
     }
     
-    .warning-alert {
-      border-left: 4px solid var(--warning-color);
-      background: rgba(255, 107, 107, 0.1);
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
     }
     
+    /* التنبيهات */
+    .warning-alert {
+      background-color: rgba(244, 67, 54, 0.1);
+      border-right: 4px solid var(--warning-color);
+    }
+    
+    .info-alert {
+      background-color: rgba(76, 175, 80, 0.1);
+      border-right: 4px solid var(--primary-color);
+    }
+    
+    /* إعلانات AdSense */
     .ad-container {
       background: #fff;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 2rem 0;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 3rem 0;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+      border: 1px solid rgba(126, 217, 87, 0.2);
     }
     
+    /* التذييل */
     footer {
-      background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+      background: linear-gradient(135deg, var(--dark-green), #1b5e20);
       color: #fff;
-      padding: 3rem 0;
+      padding: 4rem 0 2rem;
+      position: relative;
+    }
+    
+    .footer-wave {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200,120V0H0V120Z" fill="%23ffffff"></path></svg>');
+      background-size: cover;
     }
     
     /* تحسينات للجوال */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .section {
+        padding: 2rem;
+      }
+      
       .header-wave {
-        height: 50px;
+        height: 100px;
+      }
+      
+      nav {
+        padding: 0.5rem 0;
+      }
+      
+      .nav-link {
+        padding: 0.5rem;
+      }
+      
+      .top-bar {
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 3rem 0 5rem;
       }
       
       .section {
         padding: 1.5rem;
+      }
+      
+      .feature-card {
+        margin-bottom: 1.5rem;
+      }
+      
+      .top-bar .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .top-bar-icons {
+        justify-content: center;
       }
     }
     
@@ -183,7 +325,7 @@
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -191,88 +333,338 @@
       }
     }
     
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
     .animate {
-      animation: fadeInUp 0.6s ease forwards;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .slide-in {
+      animation: slideInRight 0.8s ease forwards;
     }
     
     /* تحسينات التباين للألوان */
     .text-accent {
       color: var(--accent-color);
     }
+    
+    /* أيقونات مخصصة */
+    .icon-apple {
+      color: var(--primary-color);
+      font-size: 1.3em;
+      margin-left: 5px;
+    }
+    
+    /* زر المساعدة العائم */
+    .help-btn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--dark-green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+    
+    .help-btn:hover {
+      background: var(--primary-color);
+      transform: scale(1.05);
+    }
+    
+    /* تأثيرات hover للأيقونات */
+    .bi {
+      transition: all 0.3s ease;
+    }
+    
+    .bi:hover {
+      transform: scale(1.2);
+      color: var(--primary-color);
+    }
+    
+    /* شريط التقدم */
+    .progress-container {
+      width: 100%;
+      height: 5px;
+      background: transparent;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1001;
+    }
+    
+    .progress-bar {
+      height: 5px;
+      background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+    
+    /* أزرار وسائط التواصل */
+    .social-btn {
+      background: var(--surface-color);
+      color: var(--text-primary);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .social-btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    .social-btn.facebook:hover {
+      background: #3b5998;
+    }
+    
+    .social-btn.twitter:hover {
+      background: #1da1f2;
+    }
+    
+    .social-btn.instagram:hover {
+      background: #e1306c;
+    }
+    
+    .social-btn.youtube:hover {
+      background: #ff0000;
+    }
+    
+    /* بطاقات المنصات */
+    .platform-card {
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .platform-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+    }
+    
+    /* خطوات العمل */
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+    
+    /* جدول المقارنة */
+    .comparison-table {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .comparison-table th {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: var(--apple-light);
+    }
+    
+    /* أداة التقييم */
+    .rating-stars {
+      color: #ffc107;
+      font-size: 1.2rem;
+    }
+    
+    /* شريط الأدوات */
+    .toolbar {
+      background: var(--apple-light);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* تأثيرات النص */
+    .text-gradient {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
   </style>
 </head>
 <body>
 
-<header class="position-relative">
+<!-- شريط التقدم -->
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<!-- الشريط العلوي الجديد -->
+<div class="top-bar">
   <div class="container">
-    <h1 class="display-4 fw-bold mb-3">🎬 أداة تحميل فيديوهات السوشيال ميديا</h1>
-    <p class="lead mb-4">حمل فيديوهات TikTok، Instagram، Facebook Reels <span class="text-accent">بشكل قانوني</span></p>
-    
-    <!-- تحذير حقوق النشر -->
-    <div class="warning-alert alert alert-dismissible fade show mx-auto" style="max-width: 800px;">
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      <strong>⚠️ تنبيه هام:</strong> هذه الأداة للاستخدام الشخصي فقط. يمنع استخدام المحتوى لأغراض تجارية أو انتهاك حقوق النشر حسب <a href="#copyright" class="alert-link">سياسة الاستخدام العادل</a>.
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <i class="bi bi-envelope-fill me-1"></i> <a href="mailto:info@socialvidpro.com">info@socialvidpro.com</a>
+        <i class="bi bi-phone-fill ms-3 me-1"></i> <a href="tel:+966123456789">0</a>
+      </div>
+      <div class="top-bar-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+        <a href="#"><i class="bi bi-whatsapp"></i></a>
+      </div>
     </div>
   </div>
-  <div class="header-wave"></div>
+</div>
+
+<header class="position-relative">
+  <div class="container">
+    <h1 class="display-3 fw-bold mb-3 animate" style="animation-delay: 0.1s;">
+      <span class="text-gradient">أداة تحميل فيديوهات السوشيال ميديا</span>
+      <i class="bi bi-apple icon-apple"></i>
+    </h1>
+    <p class="lead mb-4 fs-4 animate" style="animation-delay: 0.2s;">حمل فيديوهات TikTok، Instagram، YouTube، Facebook <span class="fw-bold" style="color: var(--dark-green);">بجودة عالية وسرعة فائقة</span></p>
+    
+    <!-- تحذير حقوق النشر -->
+    <div class="warning-alert alert alert-dismissible fade show mx-auto slide-in" style="max-width: 800px; animation-delay: 0.3s;">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <strong><i class="bi bi-exclamation-triangle-fill me-2"></i>تنبيه هام:</strong> هذه الأداة للاستخدام الشخصي فقط. يمنع استخدام المحتوى لأغراض تجارية أو انتهاك حقوق النشر حسب <a href="#copyright" class="alert-link fw-bold">سياسة الاستخدام العادل</a>.
+    </div>
+    
+    <!-- إحصاءات الاستخدام -->
+    <div class="row mt-4 g-4 animate" style="animation-delay: 0.4s;">
+      <div class="col-md-3 col-6">
+        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.2);">
+          <h3 class="mb-0 fw-bold">+5M</h3>
+          <p class="mb-0">مستخدم شهريًا</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.2);">
+          <h3 class="mb-0 fw-bold">+50M</h3>
+          <p class="mb-0">فيديو محمل</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.2);">
+          <h3 class="mb-0 fw-bold">24/7</h3>
+          <p class="mb-0">دعم فني</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="text-center p-3 rounded-3" style="background: rgba(255,255,255,0.2);">
+          <h3 class="mb-0 fw-bold">100%</h3>
+          <p class="mb-0">آمن وسري</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </header>
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <i class="bi bi-cloud-arrow-down-fill me-2" style="color: var(--primary-color); font-size: 1.5rem;"></i>
+      <span class="fw-bold" style="color: var(--dark-green);">SocialVidPro</span>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">🏠 الرئيسية</a></li>
-        <li class="nav-item"><a class="nav-link" href="#how-it-works">⚙️ طريقة العمل</a></li>
-        <li class="nav-item"><a class="nav-link" href="#blog">✍️ المدونة</a></li>
-        <li class="nav-item"><a class="nav-link" href="#faq">❓ الأسئلة الشائعة</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">📞 اتصل بنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="#home"><i class="bi bi-house-door me-1"></i> الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="#features"><i class="bi bi-stars me-1"></i> الميزات</a></li>
+        <li class="nav-item"><a class="nav-link" href="#how-it-works"><i class="bi bi-gear me-1"></i> طريقة العمل</a></li>
+        <li class="nav-item"><a class="nav-link" href="#platforms"><i class="bi bi-collection-play me-1"></i> المنصات المدعومة</a></li>
+        <li class="nav-item"><a class="nav-link" href="#blog"><i class="bi bi-journal-text me-1"></i> المدونة</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq"><i class="bi bi-question-circle me-1"></i> الأسئلة الشائعة</a></li>
       </ul>
+      <div class="d-flex">
+        <a href="#" class="btn btn-outline-primary me-2"><i class="bi bi-download me-1"></i> تطبيق الجوال</a>
+        <a href="#contact" class="btn btn-primary"><i class="bi bi-headset me-1"></i> الدعم الفني</a>
+      </div>
     </div>
   </div>
 </nav>
 
 <main class="container">
-  <!-- قسم التحذير القانوني -->
-  <section id="copyright" class="section animate">
+  <!-- أداة التحميل الرئيسية -->
+  <section id="home" class="section animate" style="animation-delay: 0.2s;">
     <div class="row align-items-center">
-      <div class="col-md-2 text-center">
-        <i class="bi bi-shield-lock text-danger" style="font-size: 3rem;"></i>
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="section-title"><i class="bi bi-cloud-arrow-down-fill me-2" style="color: var(--primary-color);"></i>أداة التحميل الذكية</h2>
+        <p class="lead">قم بتحميل أي فيديو من أي منصة خلال ثوانٍ معدودة!</p>
+        <ul class="list-unstyled">
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> يدعم جميع المنصات الاجتماعية</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> يحافظ على الجودة الأصلية للفيديو</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> لا يحتاج إلى تسجيل أو اشتراك</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> يعمل على جميع الأجهزة</li>
+        </ul>
       </div>
-      <div class="col-md-10">
-        <h3 class="text-danger">سياسة الاستخدام القانوني</h3>
-        <p>نحن نلتزم تمامًا بقوانين <strong>حقوق النشر (DMCA)</strong>. يحق لأصحاب المحتوى طلب إزالة أي فيديو ينتهك حقوقهم عبر <a href="mailto:dmca@socialvidsave.com">dmca@socialvidsave.com</a>. جميع الأدوات المقدمة هي لتحميل المحتوى <strong>المنشور بشكل عام</strong> للاستخدام الشخصي فقط.</p>
+      <div class="col-lg-6">
+        <div class="feature-card p-4">
+          <form method="POST" class="mx-auto">
+            <div class="mb-3">
+              <label for="platform" class="form-label fw-bold"><i class="bi bi-grid-fill me-2"></i>اختر المنصة:</label>
+              <select class="form-select form-select-lg mb-3" name="platform" id="platform" required>
+                <option value="" disabled selected>اختر المنصة...</option>
+                <option value="instagram"><i class="bi bi-instagram me-2"></i> إنستقرام</option>
+                <option value="tiktok"><i class="bi bi-tiktok me-2"></i> تيك توك</option>
+                <option value="facebook"><i class="bi bi-facebook me-2"></i> فيسبوك</option>
+                <option value="youtube"><i class="bi bi-youtube me-2"></i> يوتيوب</option>
+                <option value="twitter"><i class="bi bi-twitter me-2"></i> تويتر</option>
+                <option value="snapchat"><i class="bi bi-snapchat me-2"></i> سناب شات</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="video_url" class="form-label fw-bold"><i class="bi bi-link-45deg me-2"></i>رابط الفيديو:</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-link"></i></span>
+                <input type="url" name="video_url" id="video_url" class="form-control form-control-lg" placeholder="https://www.tiktok.com/..." required>
+              </div>
+            </div>
+            
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-cloud-arrow-down-fill me-1"></i> تحميل الآن</button>
+            </div>
+            
+            <div class="mt-3 text-center">
+              <p class="text-muted small"><i class="bi bi-info-circle-fill me-1"></i>سيتم حذف الرابط فور انتهاء التحميل ولن يتم تخزينه</p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- أداة التحميل الرئيسية -->
-  <section id="home" class="section animate" style="animation-delay: 0.2s;">
-    <h2 class="text-center mb-4">🔗 أدخل رابط الفيديو</h2>
-    
-    <form method="POST" class="mx-auto" style="max-width: 700px;">
-      <select class="form-select form-select-lg mb-3" name="platform" required>
-        <option value="" disabled selected>اختر المنصة...</option>
-        <option value="instagram">📷 إنستقرام</option>
-        <option value="tiktok">🎵 تيك توك</option>
-        <option value="facebook">📱 فيسبوك Reels</option>
-      </select>
-      
-      <div class="input-group mb-3">
-        <input type="url" name="video_url" class="form-control form-control-lg" placeholder="https://www.tiktok.com/..." required>
-        <button type="submit" class="btn btn-primary btn-lg">💾 تحميل الآن</button>
-      </div>
-      
-      <p class="text-muted text-center">سيتم حذف الرابط فور انتهاء التحميل ولن يتم تخزينه</p>
-    </form>
-  </section>
-
   <!-- إعلان AdSense -->
   <div class="ad-container animate" style="animation-delay: 0.3s;">
-    <h5 class="mb-3">الإعلانات تساعدنا على البقاء مجانين</h5>
-    <p class="text-muted small">عرض الإعلانات هو مصدر دعمنا الوحيد</p>
+    <h5 class="mb-3"><i class="bi bi-megaphone-fill me-2"></i>الإعلانات تساعدنا على تقديم الخدمة مجانًا</h5>
+    <p class="text-muted small"><i class="bi bi-heart-fill me-1" style="color: var(--primary-color);"></i>تفضل بتعطيل AdBlock لدعمنا</p>
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-4554336345606719"
@@ -284,134 +676,192 @@
 
   <!-- ميزات الموقع -->
   <section id="features" class="animate" style="animation-delay: 0.4s;">
+    <h2 class="section-title text-center mb-5"><i class="bi bi-stars me-2"></i>لماذا تختار أداتنا؟</h2>
+    
     <div class="row g-4">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="feature-card p-4 h-100">
           <div class="text-center mb-3">
-            <i class="bi bi-shield-check text-primary" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-shield-check" style="font-size: 3rem; color: var(--primary-color);"></i>
           </div>
-          <h4 class="text-center">آمن 100%</h4>
-          <p class="text-center">لا نطلب أي بيانات شخصية أو صلاحيات دخول</p>
+          <h3 class="text-center">آمن 100%</h3>
+          <p class="text-center">لا نطلب أي بيانات شخصية أو صلاحيات دخول، جميع عمليات التحميل تتم بشكل آمن وسري</p>
         </div>
       </div>
       
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="feature-card p-4 h-100">
           <div class="text-center mb-3">
-            <i class="bi bi-lightning-charge text-primary" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-lightning-charge" style="font-size: 3rem; color: var(--primary-color);"></i>
           </div>
-          <h4 class="text-center">سريع وسهل</h4>
-          <p class="text-center">تحميل مباشر بجودة عالية بدون انتظار</p>
+          <h3 class="text-center">سريع وسهل</h3>
+          <p class="text-center">تحميل مباشر بجودة عالية بدون انتظار أو تعقيدات، فقط الصق الرابط واضغط تحميل</p>
         </div>
       </div>
       
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="feature-card p-4 h-100">
           <div class="text-center mb-3">
-            <i class="bi bi-phone text-primary" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-phone" style="font-size: 3rem; color: var(--primary-color);"></i>
           </div>
-          <h4 class="text-center">يعمل على جميع الأجهزة</h4>
-          <p class="text-center">متوافق مع الجوال، التابلت، والكمبيوتر</p>
+          <h3 class="text-center">يعمل على جميع الأجهزة</h3>
+          <p class="text-center">متوافق مع جميع الأجهزة الذكية والحواسيب بدون الحاجة لتثبيت أي برامج</p>
         </div>
       </div>
       
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="feature-card p-4 h-100">
           <div class="text-center mb-3">
-            <i class="bi bi-arrow-repeat text-primary" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-hdmi" style="font-size: 3rem; color: var(--primary-color);"></i>
           </div>
-          <h4 class="text-center">بدون حدود</h4>
-          <p class="text-center">يمكنك تحميل عدد غير محدود من الفيديوهات</p>
+          <h3 class="text-center">جودة عالية</h3>
+          <p class="text-center">تحميل الفيديوهات بأعلى جودة متاحة تصل إلى 4K مع دعم الصوت المنفصل</p>
         </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+          <div class="text-center mb-3">
+            <i class="bi bi-infinity" style="font-size: 3rem; color: var(--primary-color);"></i>
+          </div>
+          <h3 class="text-center">بدون حدود</h3>
+          <p class="text-center">يمكنك تحميل عدد غير محدود من الفيديوهات يوميًا بدون قيود أو اشتراكات</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card p-4 h-100">
+          <div class="text-center mb-3">
+            <i class="bi bi-headset" style="font-size: 3rem; color: var(--primary-color);"></i>
+          </div>
+          <h3 class="text-center">دعم فني</h3>
+          <p class="text-center">فريق دعم فني متاح على مدار الساعة لمساعدتك في أي استفسار أو مشكلة</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- المنصات المدعومة -->
+  <section id="platforms" class="section animate" style="animation-delay: 0.5s;">
+    <h2 class="section-title text-center mb-5"><i class="bi bi-collection-play me-2"></i>المنصات المدعومة</h2>
+    
+    <div class="row g-4">
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-tiktok" style="font-size: 3rem; color: #000;"></i>
+          <h4 class="mt-3">تيك توك</h4>
+          <p class="text-muted small">يدعم جميع أنواع الفيديوهات والريلز</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-instagram" style="font-size: 3rem; color: #E1306C;"></i>
+          <h4 class="mt-3">إنستقرام</h4>
+          <p class="text-muted small">ريلز، قصص، فيديوهات IGTV</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-youtube" style="font-size: 3rem; color: #FF0000;"></i>
+          <h4 class="mt-3">يوتيوب</h4>
+          <p class="text-muted small">فيديوهات، Shorts، قوائم التشغيل</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-facebook" style="font-size: 3rem; color: #1877F2;"></i>
+          <h4 class="mt-3">فيسبوك</h4>
+          <p class="text-muted small">ريلز، فيديوهات، بث مباشر</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-twitter" style="font-size: 3rem; color: #1DA1F2;"></i>
+          <h4 class="mt-3">تويتر</h4>
+          <p class="text-muted small">فيديوهات التغريدات والمساحات</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-snapchat" style="font-size: 3rem; color: #FFFC00;"></i>
+          <h4 class="mt-3">سناب شات</h4>
+          <p class="text-muted small">قصص سناب شات ومقاطع الفيديو</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-reddit" style="font-size: 3rem; color: #FF5700;"></i>
+          <h4 class="mt-3">ريديت</h4>
+          <p class="text-muted small">فيديوهات منشورات ريديت</p>
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-6">
+        <div class="platform-card text-center p-4">
+          <i class="bi bi-vimeo" style="font-size: 3rem; color: #1AB7EA;"></i>
+          <h4 class="mt-3">فيميو</h4>
+          <p class="text-muted small">فيديوهات فيميو بجودة عالية</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-5">
+      <div class="info-alert alert mx-auto" style="max-width: 800px;">
+        <i class="bi bi-info-circle-fill me-2"></i> <strong>هل تبحث عن منصة غير موجودة؟</strong> يمكنك التواصل معنا لاقتراح إضافتها في التحديثات القادمة.
       </div>
     </div>
   </section>
 
   <!-- كيفية العمل -->
-  <section id="how-it-works" class="section animate" style="animation-delay: 0.5s;">
-    <h2 class="text-center mb-5">⚙️ كيفية استخدام الأداة</h2>
+  <section id="how-it-works" class="section animate" style="animation-delay: 0.6s;">
+    <h2 class="section-title text-center mb-5"><i class="bi bi-gear-wide-connected me-2"></i>كيفية استخدام الأداة</h2>
     
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="feature-card p-4 h-100">
-          <div class="text-center mb-3">
-            <span class="badge bg-primary rounded-circle" style="width: 50px; height: 50px; line-height: 50px; font-size: 1.2rem;">1</span>
-          </div>
-          <h4 class="text-center">انسخ الرابط</h4>
-          <p>اضغط على زر "مشاركة" في الفيديو المطلوب واختر "نسخ الرابط"</p>
+        <div class="feature-card p-4 h-100 text-center">
+          <div class="step-number">1</div>
+          <h3>انسخ الرابط</h3>
+          <p><i class="bi bi-phone me-1"></i>اضغط على زر "مشاركة" في الفيديو المطلوب واختر "نسخ الرابط"</p>
         </div>
       </div>
       
       <div class="col-md-4">
-        <div class="feature-card p-4 h-100">
-          <div class="text-center mb-3">
-            <span class="badge bg-primary rounded-circle" style="width: 50px; height: 50px; line-height: 50px; font-size: 1.2rem;">2</span>
-          </div>
-          <h4 class="text-center">الصق الرابط</h4>
-          <p>أدخل الرابط في الحقل بالأعلى واختر نوع المنصة</p>
+        <div class="feature-card p-4 h-100 text-center">
+          <div class="step-number">2</div>
+          <h3>الصق الرابط</h3>
+          <p><i class="bi bi-clipboard me-1"></i>أدخل الرابط في الحقل بالأعلى واختر نوع المنصة</p>
         </div>
       </div>
       
       <div class="col-md-4">
-        <div class="feature-card p-4 h-100">
-          <div class="text-center mb-3">
-            <span class="badge bg-primary rounded-circle" style="width: 50px; height: 50px; line-height: 50px; font-size: 1.2rem;">3</span>
-          </div>
-          <h4 class="text-center">حمل الفيديو</h4>
-          <p>اضغط على زر التحميل واحفظ الفيديو على جهازك</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- المدونة -->
-  <section id="blog" class="section animate" style="animation-delay: 0.6s;">
-    <h2 class="text-center mb-5">✍️ مقالات تعليمية</h2>
-    
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="feature-card h-100">
-          <img src="https://via.placeholder.com/300x200?text=حقوق+النشر" class="img-fluid rounded-top" alt="حقوق النشر">
-          <div class="p-4">
-            <h4>كيف تحمي فيديوهاتك من السرقة</h4>
-            <p>دليل شامل لحماية المحتوى الخاص بك على منصات التواصل الاجتماعي</p>
-            <a href="#" class="btn btn-outline-primary">اقرأ المزيد</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-4">
-        <div class="feature-card h-100">
-          <img src="https://via.placeholder.com/300x200?text=تيك+توك" class="img-fluid rounded-top" alt="تيك توك">
-          <div class="p-4">
-            <h4>أفضل أوقات النشر على TikTok</h4>
-            <p>تحليل بيانات لأفضل الأوقات لنشر الفيديوهات للحصول على أكبر تفاعل</p>
-            <a href="#" class="btn btn-outline-primary">اقرأ المزيد</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-4">
-        <div class="feature-card h-100">
-          <img src="https://via.placeholder.com/300x200?text=إنستقرام" class="img-fluid rounded-top" alt="إنستقرام">
-          <div class="p-4">
-            <h4>تحرير الفيديوهات لإنستقرام</h4>
-            <p>أفضل التطبيقات المجانية لتحرير الفيديوهات قبل رفعها</p>
-            <a href="#" class="btn btn-outline-primary">اقرأ المزيد</a>
-          </div>
+        <div class="feature-card p-4 h-100 text-center">
+          <div class="step-number">3</div>
+          <h3>حمل الفيديو</h3>
+          <p><i class="bi bi-download me-1"></i>اضغط على زر التحميل واحفظ الفيديو على جهازك</p>
         </div>
       </div>
     </div>
     
-    <div class="text-center mt-4">
-      <a href="#" class="btn btn-primary">عرض جميع المقالات</a>
+    <div class="text-center mt-5">
+      <div class="feature-card p-4 d-inline-block">
+        <h4><i class="bi bi-play-circle me-2"></i>شاهد الفيديو التعليمي</h4>
+        <div class="ratio ratio-16x9 mt-3" style="max-width: 600px; margin: 0 auto;">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- إعلان AdSense -->
   <div class="ad-container animate" style="animation-delay: 0.7s;">
-    <h5 class="mb-3">ادعم استمرار الخدمة</h5>
-    <p class="text-muted small">تفعيل AdBlock قد يؤثر على تجربتك</p>
+    <h5 class="mb-3"><i class="bi bi-coin me-2"></i>ادعم استمرار الخدمة</h5>
+    <p class="text-muted small"><i class="bi bi-shield-exclamation me-1"></i>تفعيل AdBlock قد يؤثر على تجربتك</p>
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-4554336345606719"
@@ -421,20 +871,85 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
+  <!-- المدونة -->
+  <section id="blog" class="section animate" style="animation-delay: 0.8s;">
+    <h2 class="section-title text-center mb-5"><i class="bi bi-journal-text me-2"></i>أحدث المقالات</h2>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="position-relative">
+            <img src="https://via.placeholder.com/600x400/7ed957/ffffff?text=حقوق+النشر" class="img-fluid rounded-top" alt="حقوق النشر">
+            <span class="badge bg-danger position-absolute top-0 start-0 m-2"><i class="bi bi-bookmark-heart me-1"></i>جديد</span>
+          </div>
+          <div class="p-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted small"><i class="bi bi-calendar me-1"></i> 15 يونيو 2023</span>
+              <span class="text-muted small"><i class="bi bi-eye me-1"></i> 1.2K</span>
+            </div>
+            <h4><i class="bi bi-shield-lock me-2"></i>كيف تحمي فيديوهاتك من السرقة</h4>
+            <p class="text-muted"><i class="bi bi-clock-history me-1"></i>دليل شامل لحماية المحتوى الخاص بك على منصات التواصل الاجتماعي</p>
+            <a href="#" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-1"></i>اقرأ المزيد</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="position-relative">
+            <img src="https://via.placeholder.com/600x400/7ed957/ffffff?text=تيك+توك" class="img-fluid rounded-top" alt="تيك توك">
+            <span class="badge bg-success position-absolute top-0 start-0 m-2"><i class="bi bi-star-fill me-1"></i>شائع</span>
+          </div>
+          <div class="p-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted small"><i class="bi bi-calendar me-1"></i> 5 يونيو 2023</span>
+              <span class="text-muted small"><i class="bi bi-eye me-1"></i> 2.4K</span>
+            </div>
+            <h4><i class="bi bi-graph-up me-2"></i>أفضل أوقات النشر على TikTok</h4>
+            <p class="text-muted"><i class="bi bi-bar-chart-line me-1"></i>تحليل بيانات لأفضل الأوقات لنشر الفيديوهات للحصول على أكبر تفاعل</p>
+            <a href="#" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-1"></i>اقرأ المزيد</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="position-relative">
+            <img src="https://via.placeholder.com/600x400/7ed957/ffffff?text=إنستقرام" class="img-fluid rounded-top" alt="إنستقرام">
+            <span class="badge bg-primary position-absolute top-0 start-0 m-2"><i class="bi bi-lightbulb me-1"></i>نصيحة</span>
+          </div>
+          <div class="p-4">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted small"><i class="bi bi-calendar me-1"></i> 28 مايو 2023</span>
+              <span class="text-muted small"><i class="bi bi-eye me-1"></i> 1.8K</span>
+            </div>
+            <h4><i class="bi bi-magic me-2"></i>تحرير الفيديوهات لإنستقرام</h4>
+            <p class="text-muted"><i class="bi bi-camera-reels me-1"></i>أفضل التطبيقات المجانية لتحرير الفيديوهات قبل رفعها</p>
+            <a href="#" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-1"></i>اقرأ المزيد</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-4">
+      <a href="#" class="btn btn-primary"><i class="bi bi-journal-bookmark me-1"></i>عرض جميع المقالات</a>
+    </div>
+  </section>
+
   <!-- الأسئلة الشائعة -->
-  <section id="faq" class="section animate" style="animation-delay: 0.8s;">
-    <h2 class="text-center mb-5">❓ الأسئلة الشائعة</h2>
+  <section id="faq" class="section animate" style="animation-delay: 0.9s;">
+    <h2 class="section-title text-center mb-5"><i class="bi bi-patch-question me-2"></i>الأسئلة الشائعة</h2>
     
     <div class="accordion" id="faqAccordion">
       <div class="accordion-item border-0 mb-3">
         <h3 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-            هل التحميل مجاني حقًا؟
+            <i class="bi bi-currency-dollar me-2"></i> هل التحميل مجاني حقًا؟
           </button>
         </h3>
         <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            نعم، الخدمة مجانية بالكامل. نحن نعتمد على الإعلانات لتغطية تكاليف الخوادم والتطوير.
+            نعم، الخدمة مجانية بالكامل. نحن نعتمد على الإعلانات لتغطية تكاليف الخوادم والتطوير. يمكنك دعمنا عن طريق تعطيل AdBlock أو مشاركة الموقع مع أصدقائك.
           </div>
         </div>
       </div>
@@ -442,12 +957,12 @@
       <div class="accordion-item border-0 mb-3">
         <h3 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-            ما هي جودة الفيديوهات بعد التحميل؟
+            <i class="bi bi-hdmi me-2"></i> ما هي جودة الفيديوهات بعد التحميل؟
           </button>
         </h3>
         <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            نحافظ على الجودة الأصلية للفيديو كما هي على المنصة الأصلية بدون أي فقدان في الجودة.
+            نحافظ على الجودة الأصلية للفيديو كما هي على المنصة الأصلية بدون أي فقدان في الجودة. تدعم أداتنا تحميل الفيديوهات بجودة تصل إلى 4K UHD مع دعم الصوت المنفصل بجودة عالية.
           </div>
         </div>
       </div>
@@ -455,12 +970,12 @@
       <div class="accordion-item border-0 mb-3">
         <h3 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-            هل يمكنني استخدام الفيديوهات في قناتي على اليوتيوب؟
+            <i class="bi bi-youtube me-2"></i> هل يمكنني استخدام الفيديوهات في قناتي على اليوتيوب؟
           </button>
         </h3>
         <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            <strong>لا</strong>، هذا قد يشكل انتهاكًا لحقوق النشر. الخدمة مخصصة للاستخدام الشخصي فقط وفقًا لشروط منصات التواصل الاجتماعي.
+            <strong>لا</strong>، هذا قد يشكل انتهاكًا لحقوق النشر. الخدمة مخصصة للاستخدام الشخصي فقط وفقًا لشروط منصات التواصل الاجتماعي. يمكنك الاطلاع على <a href="#copyright">سياسة الاستخدام العادل</a> للمزيد من التفاصيل.
           </div>
         </div>
       </div>
@@ -468,69 +983,144 @@
       <div class="accordion-item border-0 mb-3">
         <h3 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-            كيف يمكنني طلب إزالة فيديو ينتهك حقوقي؟
+            <i class="bi bi-shield-exclamation me-2"></i> كيف يمكنني طلب إزالة فيديو ينتهك حقوقي؟
           </button>
         </h3>
         <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            يمكنك التواصل عبر <a href="mailto:dmca@socialvidsave.com">dmca@socialvidsave.com</a> مع تقديم الأدلة اللازمة.
+            يمكنك التواصل عبر <a href="mailto:dmca@socialvidpro.com">dmca@socialvidpro.com</a> مع تقديم الأدلة اللازمة التي تثبت ملكيتك للمحتوى. سيتم الرد على طلبك خلال 24-48 ساعة.
           </div>
         </div>
+      </div>
+      
+      <div class="accordion-item border-0 mb-3">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            <i class="bi bi-phone me-2"></i> هل هناك تطبيق جوال للأداة؟
+          </button>
+        </h3>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            نعم، يمكنك تحميل تطبيقنا الرسمي من متجر جوجل بلاي أو آب ستور عبر <a href="#">هذا الرابط</a>. التطبيق يوفر تجربة أسرع وأكثر سلاسة مع ميزات إضافية مثل تحميل متعدد وتحميل في الخلفية.
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item border-0 mb-3">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+            <i class="bi bi-lock me-2"></i> هل عمليات التحميل آمنة وخاصة؟
+          </button>
+        </h3>
+        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            نعم، جميع عمليات التحميل تتم بشكل آمن عبر تشفير SSL. لا نقوم بتخزين روابط الفيديوهات أو أي بيانات شخصية. يمكنك قراءة المزيد في <a href="#privacy">سياسة الخصوصية</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-4">
+      <div class="info-alert alert mx-auto" style="max-width: 800px;">
+        <i class="bi bi-question-circle-fill me-2"></i> <strong>لم تجد إجابة لسؤالك؟</strong> يمكنك التواصل مع فريق الدعم عبر <a href="#contact" class="alert-link">صفحة الاتصال</a> وسنجيب عليك في أقرب وقت.
       </div>
     </div>
   </section>
 
   <!-- سياسة الخصوصية -->
-  <section id="privacy" class="section animate" style="animation-delay: 0.9s;">
-    <h2 class="text-center mb-5">🔒 سياسة الخصوصية</h2>
-    
-    <div class="row">
-      <div class="col-md-6">
-        <h4>📌 البيانات التي نجمعها</h4>
-        <ul>
-          <li>لا نطلب أو نخزن أي معلومات شخصية</li>
-          <li>روابط الفيديوهات تُحذف تلقائيًا بعد التحميل</li>
-          <li>نستخدم ملفات تعريف الارتباط (Cookies) لتحسين تجربة المستخدم</li>
-        </ul>
-      </div>
-      
-      <div class="col-md-6">
-        <h4>🛡️ حماية البيانات</h4>
-        <ul>
-          <li>نستخدم تشفير SSL لجميع الاتصالات</li>
-          <li>لا نشارك بيانات المستخدمين مع أطراف ثالثة</li>
-          <li>يمكنك حذف ملفات تعريف الارتباط من متصفحك في أي وقت</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="alert alert-info mt-4">
-      <i class="bi bi-info-circle-fill me-2"></i> لقراءة السياسة الكاملة، يرجى زيارة <a href="/privacy-policy" class="alert-link">صفحة سياسة الخصوصية</a>.
-    </div>
-  </section>
-
-  <!-- اتصل بنا -->
-  <section id="contact" class="section animate" style="animation-delay: 1s;">
-    <h2 class="text-center mb-5">📞 تواصل معنا</h2>
+  <section id="privacy" class="section animate" style="animation-delay: 1s;">
+    <h2 class="section-title text-center mb-5"><i class="bi bi-shield-lock me-2"></i>سياسة الخصوصية</h2>
     
     <div class="row">
       <div class="col-md-6">
         <div class="feature-card p-4 h-100">
-          <h4 class="text-center mb-4">📧 البريد الإلكتروني</h4>
-          <p class="text-center">
-            <a href="mailto:contact@socialvidsave.com" class="btn btn-outline-primary">contact@socialvidsave.com</a>
-          </p>
-          <p class="text-center mt-3">للأسئلة العامة والاستفسارات</p>
+          <h4><i class="bi bi-database me-2"></i>البيانات التي نجمعها</h4>
+          <ul class="list-unstyled">
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> <strong>لا نطلب أو نخزن أي معلومات شخصية</strong> مثل الأسماء أو عناوين البريد الإلكتروني أو أرقام الهواتف</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> <strong>روابط الفيديوهات تُحذف تلقائيًا</strong> بعد التحميل ولا يتم تخزينها على خوادمنا</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> <strong>نستخدم ملفات تعريف الارتباط (Cookies)</strong> لتحسين تجربة المستخدم وتحليل حركة الزيارات بشكل مجهول</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2" style="color: var(--primary-color);"></i> <strong>نستخدم Google Analytics</strong> لفهم كيفية استخدام الزوار للموقع وتحسين تجربتهم</li>
+          </ul>
         </div>
       </div>
       
       <div class="col-md-6">
         <div class="feature-card p-4 h-100">
-          <h4 class="text-center mb-4">⚖️ طلبات DMCA</h4>
-          <p class="text-center">
-            <a href="mailto:dmca@socialvidsave.com" class="btn btn-outline-danger">dmca@socialvidsave.com</a>
-          </p>
-          <p class="text-center mt-3">لإزالة المحتوى المنتهك لحقوق النشر</p>
+          <h4><i class="bi bi-lock me-2"></i>حماية البيانات</h4>
+          <ul class="list-unstyled">
+            <li class="mb-3"><i class="bi bi-shield-check me-2" style="color: var(--primary-color);"></i> <strong>نستخدم تشفير SSL</strong> لجميع الاتصالات بين جهازك وخوادمنا</li>
+            <li class="mb-3"><i class="bi bi-people me-2" style="color: var(--primary-color);"></i> <strong>لا نشارك بيانات المستخدمين</strong> مع أطراف ثالثة لأغراض تسويقية</li>
+            <li class="mb-3"><i class="bi bi-trash me-2" style="color: var(--primary-color);"></i> <strong>يمكنك حذف ملفات تعريف الارتباط</strong> من متصفحك في أي وقت عبر إعدادات المتصفح</li>
+            <li class="mb-3"><i class="bi bi-server me-2" style="color: var(--primary-color);"></i> <strong>خوادمنا تقع في مراكز بيانات آمنة</strong> مع أنظمة حماية متقدمة ضد الاختراقات</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="alert alert-info mt-4">
+      <i class="bi bi-info-circle-fill me-2"></i> لقراءة السياسة الكاملة، يرجى زيارة <a href="/privacy-policy" class="alert-link">صفحة سياسة الخصوصية</a>. آخر تحديث: 1 يونيو 2023
+    </div>
+  </section>
+
+  <!-- اتصل بنا -->
+  <section id="contact" class="section animate" style="animation-delay: 1.1s;">
+    <h2 class="section-title text-center mb-5"><i class="bi bi-headset me-2"></i>تواصل معنا</h2>
+    
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="feature-card p-4 h-100">
+          <h4 class="text-center mb-4"><i class="bi bi-envelope-paper me-2"></i>البريد الإلكتروني</h4>
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">اسمك</label>
+              <input type="text" class="form-control" id="name" placeholder="أدخل اسمك">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">بريدك الإلكتروني</label>
+              <input type="email" class="form-control" id="email" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">رسالتك</label>
+              <textarea class="form-control" id="message" rows="4" placeholder="أدخل رسالتك هنا..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100"><i class="bi bi-send me-1"></i> إرسال الرسالة</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="feature-card p-4 h-100">
+          <h4 class="text-center mb-4"><i class="bi bi-geo-alt me-2"></i>معلومات الاتصال</h4>
+          
+          <div class="mb-4">
+            <h5><i class="bi bi-envelope me-2"></i>البريد الإلكتروني</h5>
+            <p><a href="mailto:contact@socialvidpro.com" class="text-decoration-none">contact@socialvidpro.com</a></p>
+          </div>
+          
+          <div class="mb-4">
+            <h5><i class="bi bi-telephone me-2"></i>الهاتف</h5>
+            <p><a href="tel:+966123456789" class="text-decoration-none"> 0</a></p>
+          </div>
+          
+          <div class="mb-4">
+            <h5><i class="bi bi-clock me-2"></i>ساعات العمل</h5>
+            <p>الأحد - الخميس: 8 صباحًا - 5 مساءً</p>
+          </div>
+          
+          <div class="mb-4">
+            <h5><i class="bi bi-shield-exclamation me-2"></i>طلبات DMCA</h5>
+            <p><a href="mailto:dmca@socialvidpro.com" class="text-decoration-none">dmca@socialvidpro.com</a></p>
+          </div>
+          
+          <div class="mt-4">
+            <h5><i class="bi bi-share me-2"></i>وسائل التواصل الاجتماعي</h5>
+            <div class="d-flex mt-3">
+              <a href="#" class="social-btn facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="social-btn twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="social-btn instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="social-btn youtube"><i class="bi bi-youtube"></i></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -538,29 +1128,74 @@
 </main>
 
 <footer class="mt-5">
+  <div class="footer-wave"></div>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <h5>SocialVidSave</h5>
-        <p>أداة تحميل فيديوهات سوشيال ميديا آمنة وسريعة مع احترام حقوق النشر</p>
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <h5><i class="bi bi-cloud-download me-2"></i>SocialVidPro</h5>
+        <p class="mb-3">أداة تحميل فيديوهات سوشيال ميديا آمنة وسريعة مع احترام حقوق النشر. نوفر لك أفضل تجربة تحميل بدون تعقيدات.</p>
+        
+        <div class="mb-3">
+          <h6><i class="bi bi-download me-2"></i>حمل التطبيق الآن</h6>
+          <div class="d-flex mt-2">
+            <a href="#" class="me-2">
+              <img src="https://via.placeholder.com/135x40/ffffff/7ed957?text=Google+Play" alt="Google Play" class="img-fluid" style="height: 40px;">
+            </a>
+            <a href="#">
+              <img src="https://via.placeholder.com/135x40/ffffff/7ed957?text=App+Store" alt="App Store" class="img-fluid" style="height: 40px;">
+            </a>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <h6><i class="bi bi-shield-check me-2"></i>مواقع آمنة</h6>
+          <div class="d-flex mt-2">
+            <a href="#" class="me-2">
+              <img src="https://via.placeholder.com/100x40/ffffff/7ed957?text=DMCA" alt="DMCA" class="img-fluid" style="height: 40px;">
+            </a>
+            <a href="#">
+              <img src="https://via.placeholder.com/100x40/ffffff/7ed957?text=SSL" alt="SSL" class="img-fluid" style="height: 40px;">
+            </a>
+          </div>
+        </div>
       </div>
       
-      <div class="col-md-4 mb-4 mb-md-0">
-        <h5>روابط سريعة</h5>
+      <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+        <h5><i class="bi bi-link-45deg me-2"></i>روابط سريعة</h5>
         <ul class="list-unstyled">
-          <li><a href="/privacy-policy" class="text-white">سياسة الخصوصية</a></li>
-          <li><a href="/terms" class="text-white">شروط الاستخدام</a></li>
-          <li><a href="/dmca" class="text-white">سياسة DMCA</a></li>
-          <li><a href="/blog" class="text-white">المدونة</a></li>
+          <li class="mb-2"><a href="/privacy-policy" class="text-white"><i class="bi bi-chevron-left me-2"></i>سياسة الخصوصية</a></li>
+          <li class="mb-2"><a href="/terms" class="text-white"><i class="bi bi-chevron-left me-2"></i>شروط الاستخدام</a></li>
+          <li class="mb-2"><a href="/dmca" class="text-white"><i class="bi bi-chevron-left me-2"></i>سياسة DMCA</a></li>
+          <li class="mb-2"><a href="/blog" class="text-white"><i class="bi bi-chevron-left me-2"></i>المدونة</a></li>
+          <li class="mb-2"><a href="/sitemap" class="text-white"><i class="bi bi-chevron-left me-2"></i>خريطة الموقع</a></li>
         </ul>
       </div>
       
-      <div class="col-md-4">
-        <h5>تابعنا</h5>
-        <div class="social-links">
-          <a href="#" class="text-white me-3"><i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a>
-          <a href="#" class="text-white me-3"><i class="bi bi-twitter" style="font-size: 1.5rem;"></i></a>
-          <a href="#" class="text-white"><i class="bi bi-instagram" style="font-size: 1.5rem;"></i></a>
+      <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+        <h5><i class="bi bi-collection me-2"></i>المنصات</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>تيك توك</a></li>
+          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>إنستقرام</a></li>
+          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>يوتيوب</a></li>
+          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>فيسبوك</a></li>
+          <li class="mb-2"><a href="#" class="text-white"><i class="bi bi-chevron-left me-2"></i>تويتر</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-4 col-md-4">
+        <h5><i class="bi bi-people me-2"></i>تابعنا</h5>
+        <div class="social-links mb-4">
+          <a href="#" class="social-btn facebook me-2"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn twitter me-2"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="social-btn instagram me-2"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn youtube"><i class="bi bi-youtube"></i></a>
+        </div>
+        
+        <h5><i class="bi bi-envelope me-2"></i>النشرة البريدية</h5>
+        <p class="small mb-2">اشترك ليصلك كل جديد عن أدواتنا وتحديثاتنا</p>
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+          <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
         </div>
       </div>
     </div>
@@ -568,8 +1203,8 @@
     <hr class="my-4 bg-light">
     
     <div class="text-center">
-      <p class="mb-0">&copy; 2025 SocialVidSave. جميع الحقوق محفوظة.</p>
-      <p class="small">هذا الموقع غير مرتبط بـ TikTok، Instagram أو Facebook.</p>
+      <p class="mb-1"><i class="bi bi-c-circle me-1"></i> 2023 SocialVidPro. جميع الحقوق محفوظة.</p>
+      <p class="small mb-0"><i class="bi bi-info-circle me-1"></i>هذا الموقع غير مرتبط بـ TikTok، Instagram، YouTube أو Facebook.</p>
     </div>
   </div>
 </footer>
@@ -583,28 +1218,32 @@
 <div class="modal fade" id="helpModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title">🆘 مركز المساعدة</h5>
+      <div class="modal-header" style="background-color: var(--primary-color); color: white;">
+        <h5 class="modal-title"><i class="bi bi-question-circle-fill me-2"></i>مركز المساعدة</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
         <div class="mb-4">
-          <h6><i class="bi bi-instagram me-2"></i> مشاكل إنستقرام</h6>
-          <ul>
-            <li>تأكد أن الحساب ليس خاصًا</li>
-            <li>استخدم الرابط من المتصفح وليس التطبيق</li>
+          <h6><i class="bi bi-instagram me-2" style="color: var(--primary-color);"></i> مشاكل إنستقرام</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-check-circle me-2" style="color: var(--primary-color);"></i>تأكد أن الحساب ليس خاصًا</li>
+            <li class="mb-2"><i class="bi bi-check-circle me-2" style="color: var(--primary-color);"></i>استخدم الرابط من المتصفح وليس التطبيق</li>
+            <li class="mb-2"><i class="bi bi-check-circle me-2" style="color: var(--primary-color);"></i>تأكد من عدم وجود أخطاء في الرابط</li>
           </ul>
         </div>
         
         <div class="mb-4">
-          <h6><i class="bi bi-tiktok me-2"></i> نصائح تيك توك</h6>
-          <ul>
-            <li>انسخ الرابط من زر "مشاركة"</li>
-            <li>لا تدعم الفيديوهات المحمية بحقوق النشر</li>
+          <h6><i class="bi bi-tiktok me-2" style="color: var(--primary-color);"></i> نصائح تيك توك</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-check-circle me-2" style="color: var(--primary-color);"></i>انسخ الرابط من زر "مشاركة"</li>
+            <li class="mb-2"><i class="bi bi-check-circle me-2" style="color: var(--primary-color);"></i>لا تدعم الفيديوهات المحمية بحقوق النشر</li>
+            <li class="mb-2"><i class="bi bi-check-circle me-2" style="color: var(--primary-color);"></i>جرب نسخ الرابط من متصفح آخر إذا لم يعمل</li>
           </ul>
         </div>
         
-        <a href="#contact" class="btn btn-primary w-100" data-bs-dismiss="modal">📧 تواصل مع الدعم</a>
+        <div class="text-center">
+          <a href="#contact" class="btn btn-primary w-100" data-bs-dismiss="modal"><i class="bi bi-headset me-1"></i>تواصل مع الدعم</a>
+        </div>
       </div>
     </div>
   </div>
@@ -631,11 +1270,21 @@
     // إعداد أولي
     animateElements.forEach(el => {
       el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'all 0.6s ease';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.8s ease';
     });
     
-    window.addEventListener('scroll', animateOnScroll);
+    // شريط التقدم
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', function() {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollProgress = (scrollTop / scrollHeight) * 100;
+      progressBar.style.width = scrollProgress + '%';
+      
+      animateOnScroll();
+    });
+    
     animateOnScroll(); // تشغيل مرة أولى
     
     // تنشيط AdSense
@@ -643,6 +1292,21 @@
       adsbygoogle = window.adsbygoogle || [];
       adsbygoogle.push({});
     }
+    
+    // تأثيرات hover للأيقونات
+    document.querySelectorAll('.bi').forEach(icon => {
+      icon.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.2)';
+        this.style.color = 'var(--primary-color)';
+      });
+      
+      icon.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        if(!this.classList.contains('icon-apple')) {
+          this.style.color = '';
+        }
+      });
+    });
     
     // تتبع الأحداث (لتحليل البيانات)
     document.querySelectorAll('a, button').forEach(el => {
