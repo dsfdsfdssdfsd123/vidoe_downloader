@@ -13,23 +13,41 @@ os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 PLATFORM_OPTIONS = {
     'instagram': {
         'format': 'best',
-        'extract_flat': True
+        'extract_flat': True,
+        'cookies-from-browser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],
+        'add_header': [
+            'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
+        ]
     },
     'tiktok': {
         'format': 'best',
-        'cookies-from-browser': 'chrome'
+        'cookies-from-browser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],
+        'add_header': [
+            'User-Agent: Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36'
+        ]
     },
     'facebook': {
-        'format': 'best'
+        'format': 'best',
+        'cookies-from-browser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave']
     },
     'youtube': {
-        'format': 'best'
+        'format': 'best',
+        'cookies-from-browser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],
+        'cookiesfrombrowser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],
+        'extract_flat': True,
+        'no_warnings': True,
+        'ignoreerrors': True,
+        'add_header': [
+            'User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36'
+        ]
     },
     'twitter': {
-        'format': 'best'
+        'format': 'best',
+        'cookies-from-browser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave']
     },
     'snapchat': {
-        'format': 'best'
+        'format': 'best',
+        'cookies-from-browser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave']
     }
 }
 
