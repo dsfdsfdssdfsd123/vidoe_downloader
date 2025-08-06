@@ -14,10 +14,13 @@ PLATFORM_OPTIONS = {
     'instagram': {
         'format': 'best',
         'extract_flat': True,
-        'cookies-from-browser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],
+        'cookiesfrombrowser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],  # Fixed cookie option
         'add_header': [
             'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
-        ]
+        ],
+        'quiet': True,
+        'no_warnings': True,
+        'ignoreerrors': True
     },
     'tiktok': {
         'format': 'best',
@@ -60,7 +63,6 @@ def index():
         file_name = f"{uuid.uuid4()}.mp4"
         file_path = os.path.join(DOWNLOAD_FOLDER, file_name)
 
-        # الحصول على خيارات المنصة المحددة
         platform_opts = PLATFORM_OPTIONS.get(platform, {'format': 'best'})
         
         ydl_opts = {
@@ -70,8 +72,16 @@ def index():
 
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([video_url])
-            return send_file(file_path, as_attachment=True)
+                # Add error handling and info extraction
+                try:
+                    info = ydl.extract_info(video_url, download=False)
+                    if info:
+                        ydl.download([video_url])
+                        return send_file(file_path, as_attachment=True)
+                    else:
+                        return "خطأ: لم يتم العثور على المحتوى المطلوب"
+                except yt_dlp.utils.DownloadError as e:
+                    return f"خطأ في التحميل: {str(e)}"
         except Exception as e:
             return f"خطأ: {str(e)}"
 
