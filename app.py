@@ -1,129 +1,116 @@
-from flask import Flask, render_template, request, send_file, send_from_directory, redirect, url_for
+from flask import Flask, render_template, request, send_file, send_from_directory, after_this_request
 import yt_dlp
 import os
 import uuid
 import re
+import logging
 
 app = Flask(__name__)
 
-# إعداد مجلد التنزيلات
+# إعداد نظام التسجيل (Logging) لتتبع الأخطاء وتحسين التطبيق
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 DOWNLOAD_FOLDER = "downloads"
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
-# تكوين خيارات التحميل لكل منصة
-PLATFORM_OPTIONS = {
+# إعدادات بسيطة لكل منصة بدون كوكيز وبدون دمج
+PLATFORM_SETTINGS = {
     'instagram': {
-        'format': 'bestvideo+bestaudio/best',
-        'cookiesfrombrowser': ('chrome',),
-        'add_headers': {
-            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1',
-            'Referer': 'https://www.instagram.com/'
-        },
+        'format': 'best[ext=mp4]/best',
+        'referer': 'https://www.instagram.com/'
     },
     'tiktok': {
-        'format': 'best',
-        'add_headers': {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36',
-            'Referer': 'https://www.tiktok.com/'
-        },
+        'format': 'best[ext=mp4]/best',
+        'referer': 'https://www.tiktok.com/'
     },
     'facebook': {
-        'format': 'best[ext=mp4]',
-        'cookiesfrombrowser': ('chrome',),
-        'add_headers': {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Referer': 'https://www.facebook.com/'
-        }
+        'format': 'best[ext=mp4]/best'
     },
     'youtube': {
-        'format': 'bestvideo+bestaudio/best',
-        'add_headers': {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }
+        'format': 'best[ext=mp4]/best'
     },
     'twitter': {
-        'format': 'best',
-        'cookiesfrombrowser': ('chrome',),
-        'add_headers': {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Referer': 'https://twitter.com/'
-        }
+        'format': 'best[ext=mp4]/best'
+    },
+    'snapchat': {
+        'format': 'best[ext=mp4]/best'
     }
 }
 
-def validate_url(url, platform):
-    """التحقق من صحة الرابط وفقاً للمنصة"""
-    patterns = {
-        'instagram': r'(https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/[^/]+/?|https?://instagr\.am/p/[^/]+/?)',
-        'tiktok': r'(https?://(?:www\.|vm\.)?tiktok\.com/.+)',
-        'facebook': r'(https?://(?:www\.)?facebook\.com/.+/videos/.+|https?://fb\.watch/.+)',
-        'youtube': r'(https?://(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)[^&]+)',
-        'twitter': r'(https?://(?:www\.)?twitter\.com/.+/status/.+|https?://(?:www\.)?x\.com/.+/status/.+)'
-    }
-    return re.match(patterns.get(platform, ''), url) is not None
+# كشف المنصة من الرابط
+def detect_platform(url):
+    if re.search(r'(instagram\.com|instagr\.am)', url):
+        return 'instagram'
+    elif re.search(r'tiktok\.com', url):
+        return 'tiktok'
+    elif re.search(r'(facebook\.com|fb\.watch)', url):
+        return 'facebook'
+    elif re.search(r'(youtube\.com|youtu\.be)', url):
+        return 'youtube'
+    elif re.search(r'(twitter\.com|x\.com)', url):
+        return 'twitter'
+    elif re.search(r'snapchat\.com', url):
+        return 'snapchat'
+    return None
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        video_url = request.form['video_url'].strip()
-        platform = request.form['platform']
+        video_url = request.form.get('video_url', '').strip()
+        if not video_url:
+            return render_template('index.html', error_message="الرجاء إدخال رابط الفيديو.")
         
-        if not validate_url(video_url, platform):
-            return render_template('index.html', error="الرجاء إدخال رابط صحيح للمنصة المحددة")
-
-        unique_id = uuid.uuid4()
-        file_name = f"{unique_id}.mp4"
+        platform = detect_platform(video_url)
+        if not platform:
+            return render_template('index.html', error_message="المنصة غير مدعومة أو الرابط غير صحيح.")
+        
+        file_name = f"{uuid.uuid4()}.mp4"
         file_path = os.path.join(DOWNLOAD_FOLDER, file_name)
 
-        platform_opts = PLATFORM_OPTIONS.get(platform, {'format': 'best'})
         ydl_opts = {
             'outtmpl': file_path,
+            'quiet': True,
+            'no_warnings': True,
             'merge_output_format': 'mp4',
-            'retries': 3,
-            'fragment_retries': 3,
-            'no_warnings': False,
-            'quiet': False,
-            **platform_opts
+            **PLATFORM_SETTINGS.get(platform, {})
         }
 
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(video_url, download=False)
-                
                 if not info:
-                    return render_template('index.html', error="لم يتم العثور على محتوى في هذا الرابط")
+                    logging.warning(f"No content found for URL: {video_url}")
+                    return render_template('index.html', error_message="لم يتم العثور على محتوى في هذا الرابط. قد يكون الفيديو خاصًا أو محذوفًا.")
                 
-                if info.get('is_private', False):
-                    return render_template('index.html', error="هذا المحتوى خاص ويحتاج إلى تسجيل الدخول")
-                
-                # التحميل الفعلي
                 ydl.download([video_url])
-                
+
                 if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
-                    response = send_file(
-                        file_path,
-                        as_attachment=True,
-                        download_name=f"{info.get('title', 'video')}.mp4"
-                    )
-                    # حذف الملف بعد الإرسال (اختياري)
-                    response.call_on_close(lambda: os.remove(file_path))
-                    return response
+                    @after_this_request
+                    def cleanup(response):
+                        try:
+                            os.remove(file_path)
+                            logging.info(f"Successfully removed temp file: {file_path}")
+                        except Exception as e:
+                            logging.error(f"Error removing file {file_path}: {e}")
+                        return response
+                    return send_file(file_path, as_attachment=True)
                 else:
-                    return render_template('index.html', error="فشل في تحميل الفيديو")
-                    
+                    logging.error(f"Download failed for URL: {video_url}. File not created or empty.")
+                    return render_template('index.html', error_message="فشل في تحميل الفيديو. يرجى المحاولة مرة أخرى.")
+
         except yt_dlp.utils.DownloadError as e:
-            error_msg = str(e)
-            if 'Private' in error_msg:
-                return render_template('index.html', error="هذا المحتوى خاص")
-            elif 'unavailable' in error_msg.lower():
-                return render_template('index.html', error="المحتوى غير متوفر أو محذوف")
-            elif 'cookies' in error_msg.lower():
-                return render_template('index.html', error="يحتاج إلى تسجيل الدخول (جرب من متصفحك أولاً)")
-            else:
-                return render_template('index.html', error=f"خطأ في التحميل: {error_msg}")
-                
+            error_str = str(e)
+            logging.error(f"DownloadError for URL {video_url}: {error_str}")
+            user_friendly_error = "خطأ في التحميل. تأكد من أن الرابط صحيح وأن الفيديو عام."
+            if 'private' in error_str.lower() or 'login required' in error_str.lower():
+                user_friendly_error = "لا يمكن تحميل الفيديو لأنه خاص أو يتطلب تسجيل الدخول."
+            return render_template('index.html', error_message=user_friendly_error)
         except Exception as e:
-            return render_template('index.html', error=f"حدث خطأ غير متوقع: {str(e)}")
+            logging.exception(f"Unexpected error for URL {video_url}: {str(e)}")
+            # تنظيف الملف في حالة حدوث خطأ غير متوقع
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            return render_template('index.html', error_message="حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى لاحقًا.")
 
     return render_template('index.html')
 
@@ -137,4 +124,4 @@ def serve_verification_file(filename):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=False)
