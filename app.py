@@ -69,48 +69,55 @@ def index():
 
         platform_opts = PLATFORM_OPTIONS.get(platform, {'format': 'best'})
         
-        # Update cookie file path in options
-        if platform == 'instagram':
-            platform_opts['cookiefile'] = cookie_file
-        
+        # Update options for better extraction
         ydl_opts = {
             'outtmpl': file_path,
+            'extract_flat': False,  # Full extraction
+            'format': 'best',  # Best quality
+            'cookiesfrombrowser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],
+            'quiet': True,
+            'no_warnings': True,
+            'ignoreerrors': False,  # Don't ignore errors to get better feedback
             **platform_opts
         }
 
         try:
-            # Try to load cookies from browser first
-            try:
-                from browser_cookie3 import load
-                cookies = load(domain_name='.instagram.com')
-                # Save cookies to file
-                with open(cookie_file, 'w') as f:
-                    for cookie in cookies:
-                        f.write(f"{cookie.domain_specified}\tTRUE\t{cookie.path}\t"
-                              f"{'TRUE' if cookie.secure else 'FALSE'}\t{cookie.expires}\t"
-                              f"{cookie.name}\t{cookie.value}\n")
-            except Exception as e:
-                print(f"Cookie loading warning: {str(e)}")
-
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 try:
+                    # Pre-check if URL is valid
+                    if not video_url or not video_url.strip():
+                        return "خطأ: الرجاء إدخال رابط صحيح"
+
+                    # Extract info first
                     info = ydl.extract_info(video_url, download=False)
                     if info:
-                        ydl.download([video_url])
-                        # Clean up cookie file
-                        if os.path.exists(cookie_file):
-                            os.remove(cookie_file)
-                        return send_file(file_path, as_attachment=True)
+                        # Verify we have media to download
+                        if 'url' in info or 'entries' in info:
+                            ydl.download([video_url])
+                            if os.path.exists(file_path):
+                                return send_file(file_path, as_attachment=True)
+                            else:
+                                return "خطأ: فشل في حفظ الملف"
+                        else:
+                            return "خطأ: لم يتم العثور على وسائط في الرابط"
                     else:
                         return "خطأ: لم يتم العثور على المحتوى المطلوب"
                 except yt_dlp.utils.DownloadError as e:
-                    return f"خطأ في التحميل: {str(e)}"
+                    error_message = str(e)
+                    if "Private video" in error_message:
+                        return "خطأ: هذا المحتوى خاص"
+                    elif "This video is not available" in error_message:
+                        return "خطأ: المحتوى غير متاح"
+                    else:
+                        return f"خطأ في التحميل: {error_message}"
         except Exception as e:
-            return f"خطأ: {str(e)}"
+            return f"خطأ غير متوقع: {str(e)}"
         finally:
-            # Ensure cookie file is cleaned up
+            # Cleanup
             if os.path.exists(cookie_file):
                 os.remove(cookie_file)
+            if os.path.exists(file_path) and not os.path.getsize(file_path):
+                os.remove(file_path)
 
     return render_template('index.html')
 
