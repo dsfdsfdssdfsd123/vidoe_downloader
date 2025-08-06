@@ -9,17 +9,45 @@ app = Flask(__name__)
 DOWNLOAD_FOLDER = "downloads"
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
+# تكوين خيارات التحميل لكل منصة
+PLATFORM_OPTIONS = {
+    'instagram': {
+        'format': 'best',
+        'extract_flat': True
+    },
+    'tiktok': {
+        'format': 'best',
+        'cookies-from-browser': 'chrome'
+    },
+    'facebook': {
+        'format': 'best'
+    },
+    'youtube': {
+        'format': 'best'
+    },
+    'twitter': {
+        'format': 'best'
+    },
+    'snapchat': {
+        'format': 'best'
+    }
+}
+
 # الصفحة الرئيسية وتحميل الفيديو
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         video_url = request.form['video_url']
+        platform = request.form['platform']
         file_name = f"{uuid.uuid4()}.mp4"
         file_path = os.path.join(DOWNLOAD_FOLDER, file_name)
 
+        # الحصول على خيارات المنصة المحددة
+        platform_opts = PLATFORM_OPTIONS.get(platform, {'format': 'best'})
+        
         ydl_opts = {
             'outtmpl': file_path,
-            'format': 'best',
+            **platform_opts
         }
 
         try:
