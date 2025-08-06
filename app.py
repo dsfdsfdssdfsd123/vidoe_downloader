@@ -14,7 +14,7 @@ PLATFORM_OPTIONS = {
     'instagram': {
         'format': 'best',
         'extract_flat': True,
-        'cookiesfrombrowser': ['chrome', 'firefox', 'opera', 'edge', 'safari', 'brave'],  # Fixed cookie option
+        'cookiefile': 'cookies.txt',  # Add cookie file option
         'add_header': [
             'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1'
         ],
@@ -60,10 +60,18 @@ def index():
     if request.method == 'POST':
         video_url = request.form['video_url']
         platform = request.form['platform']
-        file_name = f"{uuid.uuid4()}.mp4"
+        
+        # Create a unique filename for both video and cookies
+        unique_id = uuid.uuid4()
+        file_name = f"{unique_id}.mp4"
+        cookie_file = os.path.join(DOWNLOAD_FOLDER, f"cookies_{unique_id}.txt")
         file_path = os.path.join(DOWNLOAD_FOLDER, file_name)
 
         platform_opts = PLATFORM_OPTIONS.get(platform, {'format': 'best'})
+        
+        # Update cookie file path in options
+        if platform == 'instagram':
+            platform_opts['cookiefile'] = cookie_file
         
         ydl_opts = {
             'outtmpl': file_path,
@@ -71,12 +79,27 @@ def index():
         }
 
         try:
+            # Try to load cookies from browser first
+            try:
+                from browser_cookie3 import load
+                cookies = load(domain_name='.instagram.com')
+                # Save cookies to file
+                with open(cookie_file, 'w') as f:
+                    for cookie in cookies:
+                        f.write(f"{cookie.domain_specified}\tTRUE\t{cookie.path}\t"
+                              f"{'TRUE' if cookie.secure else 'FALSE'}\t{cookie.expires}\t"
+                              f"{cookie.name}\t{cookie.value}\n")
+            except Exception as e:
+                print(f"Cookie loading warning: {str(e)}")
+
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                # Add error handling and info extraction
                 try:
                     info = ydl.extract_info(video_url, download=False)
                     if info:
                         ydl.download([video_url])
+                        # Clean up cookie file
+                        if os.path.exists(cookie_file):
+                            os.remove(cookie_file)
                         return send_file(file_path, as_attachment=True)
                     else:
                         return "خطأ: لم يتم العثور على المحتوى المطلوب"
@@ -84,6 +107,10 @@ def index():
                     return f"خطأ في التحميل: {str(e)}"
         except Exception as e:
             return f"خطأ: {str(e)}"
+        finally:
+            # Ensure cookie file is cleaned up
+            if os.path.exists(cookie_file):
+                os.remove(cookie_file)
 
     return render_template('index.html')
 
