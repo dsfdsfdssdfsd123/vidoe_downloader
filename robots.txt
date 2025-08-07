@@ -1,2 +1,24 @@
+# قواعد الزحف الأساسية لمحركات البحث
 User-agent: *
-Allow: /
+Allow: /                  # السماح بزحف الموقع بالكامل
+Disallow: /private/       # منع الزحف من المجلدات الحساسة
+Disallow: /admin/
+Disallow: /wp-admin/      # إذا كنت تستخدم ووردبريس
+Disallow: /search/        # منع صفحات البحث الداخلية
+Disallow: /*?*            # منع URLs تحتوي على علامات استفهام (معلمات)
+Disallow: /*.pdf$         # منع زحف ملفات PDF (اختياري)
+
+# قواعد خاصة بزواحف محددة
+User-agent: MJ12bot       # منع زاحف Majestic
+Disallow: /
+
+User-agent: SemrushBot    # منع زاحف Semrush
+Disallow: /
+
+# روابط خرائط الموقع (Sitemaps)
+Sitemap: https://www.example.com/sitemap.xml
+Sitemap: https://www.example.com/sitemap-images.xml
+
+# إعدادات إضافية (اختيارية)
+Crawl-delay: 2            # تخفيف ضغط الزحف على السيرفر (2 ثواني بين الطلبات)
+Clean-param: ref /blog/   # تجاهل معلمات URLs مثل /blog/post?ref=123
