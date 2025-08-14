@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 DOWNLOAD_FOLDER = "downloads"
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
-# إعدادات بسيطة لكل منصة بدون كوكيز وبدون دمج
+# إعدادات بسيطة لكل منصة بدون كوكيز
 PLATFORM_SETTINGS = {
     'instagram': {
         'format': 'best[ext=mp4]/best',
@@ -24,53 +24,57 @@ PLATFORM_SETTINGS = {
         'referer': 'https://www.tiktok.com/'
     },
     'facebook': {
-        'format': 'best[ext=mp4]/best'
+        'format': 'best[ext=mp4]/best',
+        'referer': 'https://www.facebook.com/'
     },
     'youtube': {
-        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
-        'postprocessors': [{
-            'key': 'FFmpegVideoConvertor',
-            'preferedformat': 'mp4',
-        }],
+        'format': 'best[ext=mp4][height<=1080]/best[ext=mp4]/best'
     },
     'twitter': {
-        'format': 'best[ext=mp4]/best'
+        'format': 'best[ext=mp4]/best',
+        'referer': 'https://twitter.com/'
     },
     'snapchat': {
         'format': 'best[ext=mp4]/best'
     }
 }
 
-# كشف المنصة من الرابط
+# قاموس لتحديد المنصة بناءً على الأنماط في الرابط
+PLATFORM_PATTERNS = {
+    'instagram': r'(instagram\.com|instagr\.am)',
+    'tiktok': r'tiktok\.com',
+    'facebook': r'(facebook\.com|fb\.watch)',
+    'youtube': r'(youtube\.com|youtu\.be)',
+    'twitter': r'(twitter\.com|x\.com)',
+    'snapchat': r'snapchat\.com',
+}
+
 def detect_platform(url):
-    if re.search(r'(instagram\.com|instagr\.am)', url):
-        return 'instagram'
-    elif re.search(r'tiktok\.com', url):
-        return 'tiktok'
-    elif re.search(r'(facebook\.com|fb\.watch)', url):
-        return 'facebook'
-    elif re.search(r'(youtube\.com|youtu\.be)', url):
-        return 'youtube'
-    elif re.search(r'(twitter\.com|x\.com)', url):
-        return 'twitter'
-    elif re.search(r'snapchat\.com', url):
-        return 'snapchat'
+    """اكتشف المنصة تلقائياً من الرابط"""
+    for platform, pattern in PLATFORM_PATTERNS.items():
+        if re.search(pattern, url):
+            return platform
     return None
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         video_url = request.form.get('video_url', '').strip()
+        platform = request.form.get('platform')
+        
         if not video_url:
             return render_template('index.html', error_message="الرجاء إدخال رابط الفيديو.")
         
-        platform = detect_platform(video_url)
+        # إذا لم يتم اختيار منصة، حاول اكتشافها تلقائياً
         if not platform:
-            return render_template('index.html', error_message="المنصة غير مدعومة أو الرابط غير صحيح.")
-        
+            platform = detect_platform(video_url)
+            if not platform:
+                return render_template('index.html', error_message="لم نتمكن من التعرف على المنصة. الرجاء اختيارها يدوياً.")
+
         file_name = f"{uuid.uuid4()}.mp4"
         file_path = os.path.join(DOWNLOAD_FOLDER, file_name)
 
+        # الحصول على إعدادات المنصة بدون كوكيز
         ydl_opts = {
             'outtmpl': file_path,
             'quiet': True,
@@ -89,15 +93,22 @@ def index():
                 ydl.download([video_url])
 
                 if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
+                    video_title = info.get('title', f'video-{uuid.uuid4()}')
+                    safe_title = re.sub(r'[\\/*?:"<>|]', "", video_title)
+                    download_filename = f"{safe_title}.mp4"
+
                     @after_this_request
                     def cleanup(response):
                         try:
+                            import time
+                            time.sleep(1)
                             os.remove(file_path)
                             logging.info(f"Successfully removed temp file: {file_path}")
                         except Exception as e:
-                            logging.error(f"Error removing file {file_path}: {e}")
+                            logging.error(f"Error removing temp file {file_path} during cleanup: {e}")
                         return response
-                    return send_file(file_path, as_attachment=True)
+                    
+                    return send_file(file_path, as_attachment=True, download_name=download_filename)
                 else:
                     logging.error(f"Download failed for URL: {video_url}. File not created or empty.")
                     return render_template('index.html', error_message="فشل في تحميل الفيديو. يرجى المحاولة مرة أخرى.")
@@ -105,13 +116,16 @@ def index():
         except yt_dlp.utils.DownloadError as e:
             error_str = str(e)
             logging.error(f"DownloadError for URL {video_url}: {error_str}")
+            
             user_friendly_error = "خطأ في التحميل. تأكد من أن الرابط صحيح وأن الفيديو عام."
             if 'private' in error_str.lower() or 'login required' in error_str.lower():
                 user_friendly_error = "لا يمكن تحميل الفيديو لأنه خاص أو يتطلب تسجيل الدخول."
+            elif 'age' in error_str.lower() or 'restricted video' in error_str.lower():
+                user_friendly_error = "هذا الفيديو مقيد بالعمر ولا يمكن تحميله بدون تسجيل الدخول."
+            
             return render_template('index.html', error_message=user_friendly_error)
         except Exception as e:
             logging.exception(f"Unexpected error for URL {video_url}: {str(e)}")
-            # تنظيف الملف في حالة حدوث خطأ غير متوقع
             if os.path.exists(file_path):
                 os.remove(file_path)
             return render_template('index.html', error_message="حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى لاحقًا.")
