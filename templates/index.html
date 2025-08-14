@@ -1346,6 +1346,27 @@
           this.submit();
       }, 2000); // مدة العرض: ثانيتان
     });
+
+    // ربط حقل الرابط بقائمة المنصات لتحسين تجربة المستخدم
+    const urlInput = document.getElementById('video_url');
+    const platformSelect = document.getElementById('platform');
+
+    urlInput.addEventListener('input', function() {
+        const url = this.value.toLowerCase();
+        if (url.includes('youtube.com') || url.includes('youtu.be')) {
+            platformSelect.value = 'youtube';
+        } else if (url.includes('instagram.com') || url.includes('instagr.am')) {
+            platformSelect.value = 'instagram';
+        } else if (url.includes('tiktok.com')) {
+            platformSelect.value = 'tiktok';
+        } else if (url.includes('facebook.com') || url.includes('fb.watch')) {
+            platformSelect.value = 'facebook';
+        } else if (url.includes('twitter.com') || url.includes('x.com')) {
+            platformSelect.value = 'twitter';
+        } else if (url.includes('snapchat.com')) {
+            platformSelect.value = 'snapchat';
+        }
+    });
   });
 </script>
 
