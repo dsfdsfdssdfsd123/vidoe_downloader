@@ -27,7 +27,11 @@ PLATFORM_SETTINGS = {
         'format': 'best[ext=mp4]/best'
     },
     'youtube': {
-        'format': 'best[ext=mp4]/best'
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+        'postprocessors': [{
+            'key': 'FFmpegVideoConvertor',
+            'preferedformat': 'mp4',
+        }],
     },
     'twitter': {
         'format': 'best[ext=mp4]/best'
